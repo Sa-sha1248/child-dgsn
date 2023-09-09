@@ -32,6 +32,8 @@
     .nav_content{
         padding: 10px;
         display: inline;
+        background-color: transparent;
+        border: none;
         /* background-color: rgb(245, 169, 182);
         border-style: solid;
         border-color: rgb(245, 169, 182);
@@ -43,8 +45,14 @@
         display: none;
 
     }
-    .content-changer{
+    /* .content-changer{
 
+    } */
+
+    .close-button{
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
     .color{
@@ -67,7 +75,7 @@
         display: grid;
         width: 100vw;
         height: 100vh;
-        grid-template-rows: 100px 1fr 1fr 1fr;
+        grid-template-rows: 1.3fr 1fr 1fr;
     }
 
     #content_box, .trash{      
@@ -97,11 +105,11 @@
 <div id = vertical-grid>
     <div id = 'nav_bar'>
         <!-- 클릭하면 숨겨진 div를 열어서 내용 변경할 수 있도록 하기 -->
-        <div class = 'nav_content' on:click={() => document.getElementById('content-changer').classList.remove('hidden')}>말씀내용 변경하기</div>
+        <button class = 'nav_content' on:click={() => document.getElementById('content-changer').classList.remove('hidden')}>말씀내용 변경하기</button>
             
-        <div class = 'nav_content' on:click={() => document.getElementById('font-changer').classList.remove('hidden')}>글씨체 변경</div>
+        <button class = 'nav_content' on:click={() => document.getElementById('font-changer').classList.remove('hidden')}>글씨체 변경</button>
            
-        <div class = 'nav_content' on:click={() => document.getElementById('background-changer').classList.remove('hidden')}>배경 색 바꾸기</div>
+        <button class = 'nav_content' on:click={() => document.getElementById('background-changer').classList.remove('hidden')}>배경 색 바꾸기</button>
         
         <div style="margin: 10px;">
             <div id = 'content-changer' class = 'hidden' >
@@ -109,12 +117,12 @@
                 <input bind:value = {chapter}/> 장
                 <input bind:value = {verse}/> 절
 
-                <button on:click={ () => hide('content-changer')}>닫기</button>
+                <button class = "close-button" on:click={ () => hide('content-changer')}>닫기</button>
             </div>
 
             <div id = 'font-changer' class = 'hidden' >
                 아직 안만듬
-                <button on:click={ () => hide('font-changer')}>닫기</button>
+                <button class = "close-button" on:click={ () => hide('font-changer')}>닫기</button>
             </div>
 
             <div id = 'background-changer' class = 'hidden' >
@@ -127,12 +135,11 @@
                 <button class = 'color' on:click={ () => color_change('pink')} style = 'background-color:pink'>  </button>
                 <button class = 'color' on:click={ () => color_change('brown')} style = 'background-color:brown'>  </button>
 
-                <button on:click={ () => hide('background-changer')}>닫기</button>
+                <button class = "close-button" on:click={ () => hide('background-changer')}>닫기</button>
             </div>
         </div>
     </div>
 
-    <div class = 'trash'></div>
     <div id = 'content_box'>
         <div id = 'content'>{p}</div>
 
