@@ -13,7 +13,7 @@
         /* 장, 절 */
         #location{
             font-family: 'Nanum Brush Script', cursive;
-            font-size: 3em;
+            font-size: 4em;
         }
         /* 네비게이션 */
         .nav_content{
@@ -52,6 +52,12 @@
         margin-bottom: 10px;
     }
 
+    textarea{
+        display: block;
+        width: 550px;
+        height: 150px;
+    }
+
     .color{
         height: 50px;
         width: 50px;
@@ -83,9 +89,10 @@
 </style>
 
 <script>
-    let p = '말씀구절';
-    let chapter = 1;
-    let verse = 2;
+    let p = '너희는 강하고 담대하라 두려워하지 말라\n그들 앞에서 떨지 말라 이는 네 하나님 여호와\n그가 너와 함께 가시며 결코 너를 떠나지 아니하시며\n버리지 아니하실 것임이라 하고';
+    let book = '신명기';
+    let chapter = 31;
+    let verse = 6;
 
     function hide(params) {
         let container = document.getElementById(params);
@@ -104,6 +111,11 @@
         document.body.style.backgroundColor = params;
     }
 
+    function convertLineBreaksToHTML(text) {
+    return text.replace(/\n/g, '<br>');
+}
+
+
 </script>
 
 
@@ -118,7 +130,8 @@
         
         <div style="margin: 10px;">
             <div id = 'content-changer' class = 'hidden' >
-                구절내용 <input bind:value={p}>
+                구절내용 <textarea bind:value={p}></textarea>
+                <input bind:value= {book}>
                 <input bind:value = {chapter}/> 장
                 <input bind:value = {verse}/> 절
 
@@ -149,10 +162,9 @@
     </div>
 
     <div id = 'content_box'>
-        <div id = 'content'>{p}</div>
-
+        <div id = 'content'>{@html convertLineBreaksToHTML(p)}</div>
         <div id = 'location'>
-            {chapter}장 {verse}절
+            {book} {chapter}장 {verse}절
         </div>
 
     </div>
