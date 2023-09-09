@@ -6,20 +6,17 @@
     /* 글씨체 */
         /* 말씀내용 */
         #content {
-            color: black;
             font-family: 'Nanum Brush Script', cursive;
             font-weight: bold;
             font-size: 5em;
         }
         /* 장, 절 */
         #location{
-            color: black;
             font-family: 'Nanum Brush Script', cursive;
             font-size: 3em;
         }
         /* 네비게이션 */
         .nav_content{
-            color: black;
             font-family: 'Nanum Brush Script', cursive;
             font-size: 2em;
         }
@@ -95,7 +92,15 @@
         container.classList.add('hidden');
     }
 
-    function color_change(params) {
+    function text_color_change(params) {
+        document.body.style.color = params;
+        let navContents = document.querySelectorAll('.nav_content');
+        for (var i = 0; i < navContents.length; i++) {
+        navContents[i].style.color = params;
+    }
+    }
+    
+    function backgroundcolor_change(params) {
         document.body.style.backgroundColor = params;
     }
 
@@ -121,19 +126,22 @@
             </div>
 
             <div id = 'font-changer' class = 'hidden' >
-                아직 안만듬
+                <p>글자색</p>
+                <button class = 'color' on:click={ () => text_color_change('black')} style = 'background-color:black'>  </button>
+                <button class = 'color' on:click={ () => text_color_change('white')} style = 'background-color:white'>  </button>
+
                 <button class = "close-button" on:click={ () => hide('font-changer')}>닫기</button>
             </div>
 
             <div id = 'background-changer' class = 'hidden' >
 
-                <button class = 'color' on:click={ () => color_change('red')} style = 'background-color:red'>  </button>
-                <button class = 'color' on:click={ () => color_change('yellow')} style = 'background-color:yellow'>  </button>
-                <button class = 'color' on:click={ () => color_change('blue')} style = 'background-color:blue'>  </button>
-                <button class = 'color' on:click={ () => color_change('gray')} style = 'background-color:gray'>  </button>
-                <button class = 'color' on:click={ () => color_change('white')} style = 'background-color:white'>  </button>
-                <button class = 'color' on:click={ () => color_change('pink')} style = 'background-color:pink'>  </button>
-                <button class = 'color' on:click={ () => color_change('brown')} style = 'background-color:brown'>  </button>
+                <button class = 'color' on:click={ () => backgroundcolor_change('red')} style = 'background-color:red'>  </button>
+                <button class = 'color' on:click={ () => backgroundcolor_change('yellow')} style = 'background-color:yellow'>  </button>
+                <button class = 'color' on:click={ () => backgroundcolor_change('blue')} style = 'background-color:blue'>  </button>
+                <button class = 'color' on:click={ () => backgroundcolor_change('gray')} style = 'background-color:gray'>  </button>
+                <button class = 'color' on:click={ () => backgroundcolor_change('white')} style = 'background-color:white'>  </button>
+                <button class = 'color' on:click={ () => backgroundcolor_change('pink')} style = 'background-color:pink'>  </button>
+                <button class = 'color' on:click={ () => backgroundcolor_change('brown')} style = 'background-color:brown'>  </button>
 
                 <button class = "close-button" on:click={ () => hide('background-changer')}>닫기</button>
             </div>
